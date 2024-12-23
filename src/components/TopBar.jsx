@@ -1,4 +1,3 @@
-// src/TopBar.js
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
@@ -6,10 +5,9 @@ import { faBell } from '@fortawesome/free-solid-svg-icons';
 const TopBar = () => {
     return (
         <div className="bg-white shadow-2xl flex items-center justify-between p-4">
-            {/* Dashboard Title */}
+            
             <div className="text-xl text-blue-600 font-semibold">Dashboard</div>
 
-            {/* Search Input (Centered) */}
             <div className="flex flex-1 justify-center">
                 <input
                     type="text"
@@ -18,7 +16,6 @@ const TopBar = () => {
                 />
             </div>
             
-            {/* User Avatar and Notification Icon */}
             <div className="flex items-center space-x-4">
                 <FontAwesomeIcon icon={faBell} className="h-6 w-6 text-gray-600 cursor-pointer" />
                 <img
