@@ -1,30 +1,36 @@
 // src/ManageUsers.js
-import React from 'react';
+import React, { useState } from 'react';
+import UpdateUser from './UpdateUser'; // Import the UpdateUser component
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ManageUsers() {
-    const users = [
-        {
-            id: 1,
-            username: "johndoe",
-            email: "john@example.com",
-            role: "Admin",
-        },
-        {
-            id: 2,
-            username: "janesmith",
-            email: "jane@example.com",
-            role: "User",
-        },
-        {
-            id: 3,
-            username: "alicejohnson",
-            email: "alice@example.com",
-            role: "Editor",
-        },
-        // Add more sample data as needed
-    ];
+    const [users, setUsers] = useState([
+        { id: 1, username: "johndoe", email: "john@example.com", role: "Admin" },
+        { id: 2, username: "janesmith", email: "jane@example.com", role: "User" },
+        { id: 3, username: "alicejohnson", email: "alice@example.com", role: "Editor" },
+    ]);
+
+    const [editingUser, setEditingUser] = useState(null);
+
+    const handleUpdateUser = (updatedUser) => {
+        const updatedUsers = users.map(user =>
+            user.id === updatedUser.id ? updatedUser : user
+        );
+        setUsers(updatedUsers);
+        setEditingUser(null);
+        toast.success('User updated successfully!');
+    };
+
+    const handleDeleteUser = (userId) => {
+        const confirmed = window.confirm("Are you sure you want to delete this user?");
+        if (confirmed) {
+            setUsers(users.filter(user => user.id !== userId));
+            toast.success('User deleted successfully!');
+        }
+    };
 
     return (
         <div className="p-5 bg-gray-100">
@@ -46,10 +52,10 @@ function ManageUsers() {
                                 <td className="py-2 px-4 border-b">{user.email}</td>
                                 <td className="py-2 px-4 border-b">{user.role}</td>
                                 <td className="py-2 px-4 border-b flex justify-start space-x-2">
-                                    <button className="text-blue-500 hover:text-blue-700">
+                                    <button onClick={() => setEditingUser(user)} className="text-blue-500 hover:text-blue-700">
                                         <FontAwesomeIcon icon={faEdit} />
                                     </button>
-                                    <button className="text-red-500 hover:text-red-700">
+                                    <button onClick={() => handleDeleteUser(user.id)} className="text-red-500 hover:text-red-700">
                                         <FontAwesomeIcon icon={faTrash} />
                                     </button>
                                 </td>
@@ -58,6 +64,10 @@ function ManageUsers() {
                     </tbody>
                 </table>
             </div>
+            {editingUser && (
+                <UpdateUser user={editingUser} onUpdate={handleUpdateUser} />
+            )}
+            <ToastContainer />
         </div>
     );
 }

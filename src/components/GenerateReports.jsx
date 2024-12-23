@@ -1,4 +1,3 @@
-// src/GenerateReports.js
 import React, { useState } from 'react';
 
 function GenerateReports() {
