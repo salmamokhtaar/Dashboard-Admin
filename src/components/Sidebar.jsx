@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLongArrowAltUp, faBusinessTime, faHome, faCheck, faUserCog, faCancel,faFileAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt, faBusinessTime, faHome, faCheck, faUserCog, faCancel,faFileAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 const Sidebar = () => {
@@ -30,7 +30,7 @@ const Sidebar = () => {
                 </Link>
 
                 <Link to="/logOut" className="block mt-20 py-2 hover:underline rounded">
-                    <FontAwesomeIcon icon={faLongArrowAltUp} className="mr-2" /> Logout
+                    <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" /> Logout
                 </Link>
             </nav>
         </aside>
