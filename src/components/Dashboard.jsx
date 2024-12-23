@@ -1,28 +1,29 @@
-// src/Dashboard.js
 import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import TopBar from './TopBar'; 
-import BusinessChart from './BusinessChart'
+import TopBar from './TopBar';
+import BusinessChart from './BusinessChart';
 import AnotherChart from './AnotherChart';
+
 const Dashboard = () => {
     const location = useLocation();
     const hideCardsPaths = ['/view-businesses', '/approved-registrations', '/rejected', '/generate-reports', '/manage-users'];
 
     return (
         <div className="flex flex-col h-screen">
-            <TopBar /> 
+            <TopBar />
             <div className="flex flex-1">
                 <Sidebar />
                 <div className="flex-1 p-5 bg-gray-100">
                     <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
-                    
+
+                    {/* Conditionally render cards */}
                     {!hideCardsPaths.includes(location.pathname) && (
                         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-4'>
                             <div className='bg-white rounded-lg shadow-lg p-5 flex flex-col justify-between'>
                                 <div className="flex items-center mb-3">
                                     <div className="h-12 w-12 bg-sky-700 text-white rounded-full flex items-center justify-center">
-                                        <i className="fas fa-shopping-cart"></i> {/* Example Icon */}
+                                        <i className="fas fa-shopping-cart"></i>
                                     </div>
                                     <div className="ml-4">
                                         <h2 className='text-lg font-semibold'>Approved</h2>
@@ -34,7 +35,7 @@ const Dashboard = () => {
                             <div className='bg-white rounded-lg shadow-lg p-5 flex flex-col justify-between'>
                                 <div className="flex items-center mb-3">
                                     <div className="h-12 w-12 bg-blue-500 text-white rounded-full flex items-center justify-center">
-                                        <i className="fas fa-users"></i> {/* Example Icon */}
+                                        <i className="fas fa-users"></i>
                                     </div>
                                     <div className="ml-4">
                                         <h2 className='text-lg font-semibold'>Business Registration</h2>
@@ -46,7 +47,7 @@ const Dashboard = () => {
                             <div className='bg-white rounded-lg shadow-lg p-5 flex flex-col justify-between'>
                                 <div className="flex items-center mb-3">
                                     <div className="h-12 w-12 bg-green-500 text-white rounded-full flex items-center justify-center">
-                                        <i className="fas fa-dollar-sign"></i> {/* Example Icon */}
+                                        <i className="fas fa-dollar-sign"></i>
                                     </div>
                                     <div className="ml-4">
                                         <h2 className='text-lg font-semibold'>Rejected</h2>
@@ -58,7 +59,7 @@ const Dashboard = () => {
                             <div className='bg-white rounded-lg shadow-lg p-5 flex flex-col justify-between'>
                                 <div className="flex items-center mb-3">
                                     <div className="h-12 w-12 bg-pink-500 text-white rounded-full flex items-center justify-center">
-                                        <i className="fas fa-user-friends"></i> {/* Example Icon */}
+                                        <i className="fas fa-user-friends"></i>
                                     </div>
                                     <div className="ml-4">
                                         <h2 className='text-lg font-semibold'>Users</h2>
@@ -69,18 +70,19 @@ const Dashboard = () => {
                             </div>
                         </div>
                     )}
-            <BusinessChart/>
 
-<div>
-    
-</div>
+                    {/* Conditionally render charts */}
+                    {location.pathname === '/' && (
+                        <div>
+                            <BusinessChart/>
+                        </div>
+                    )}
+
                     <div className="mt-5">
                         <Outlet />
                     </div>
                 </div>
-                
             </div>
-
         </div>
     );
 };

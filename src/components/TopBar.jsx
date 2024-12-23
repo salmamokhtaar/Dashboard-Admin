@@ -33,7 +33,8 @@ import Profile from './Profile';
 const TopBar = () => {
     return (
         <div className="bg-white shadow-2xl flex items-center justify-between p-4 fixed-top">
-            <div className="text-xl text-blue-600 font-semibold">Dashboard</div>
+            <div>
+                <h1 className="text-xl text-blue-600 font-semibold"> Admin</h1> </div>
 
             <div className="flex flex-1 justify-center">
                 <input
