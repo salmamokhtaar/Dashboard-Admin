@@ -1,10 +1,13 @@
 // src/ApprovedRegistration.js
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import UpdateBusiness from './UpdateBusiness'; // Import the UpdateBusiness component
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ApprovedRegistration() {
-    const approvedBusinesses = [
+    const [approvedBusinesses, setApprovedBusinesses] = useState([
         {
             id: 1,
             companyName: "Company A",
@@ -25,8 +28,26 @@ function ApprovedRegistration() {
             category: "LLC",
             registrationNumber: "REG654321"
         },
-        // Add more sample data as needed
-    ];
+    ]);
+
+    const [editingBusiness, setEditingBusiness] = useState(null);
+
+    const handleUpdateBusiness = (updatedBusiness) => {
+        const updatedBusinesses = approvedBusinesses.map(business =>
+            business.id === updatedBusiness.id ? updatedBusiness : business
+        );
+        setApprovedBusinesses(updatedBusinesses);
+        setEditingBusiness(null);
+        toast.success('Business updated successfully!');
+    };
+
+    const handleDeleteBusiness = (businessId) => {
+        const confirmed = window.confirm("Are you sure you want to delete this business?");
+        if (confirmed) {
+            setApprovedBusinesses(approvedBusinesses.filter(business => business.id !== businessId));
+            toast.success('Business deleted successfully!');
+        }
+    };
 
     return (
         <div className="p-5 bg-gray-100">
@@ -56,10 +77,10 @@ function ApprovedRegistration() {
                                 <td className="py-2 px-4 border-b">{business.category}</td>
                                 <td className="py-2 px-4 border-b">{business.registrationNumber}</td>
                                 <td className="py-2 px-4 border-b flex space-x-2">
-                                    <button className="text-blue-500 hover:text-blue-700">
+                                    <button onClick={() => setEditingBusiness(business)} className="text-blue-500 hover:text-blue-700">
                                         <FontAwesomeIcon icon={faEdit} />
                                     </button>
-                                    <button className="text-red-500 hover:text-red-700">
+                                    <button onClick={() => handleDeleteBusiness(business.id)} className="text-red-500 hover:text-red-700">
                                         <FontAwesomeIcon icon={faTrash} />
                                     </button>
                                 </td>
@@ -68,6 +89,10 @@ function ApprovedRegistration() {
                     </tbody>
                 </table>
             </div>
+            {editingBusiness && (
+                <UpdateBusiness business={editingBusiness} onUpdate={handleUpdateBusiness} />
+            )}
+            <ToastContainer />
         </div>
     );
 }

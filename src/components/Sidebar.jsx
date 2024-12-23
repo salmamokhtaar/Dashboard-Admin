@@ -7,9 +7,9 @@ import { faSignOutAlt, faBusinessTime, faHome, faCheck, faUserCog, faCancel,faFi
 const Sidebar = () => {
     return (
         <aside className="w-64 shadow-lg bg-blue-500 text-white text-2xl h-screen p-5">
-            <nav className='pt-8 text-2xl  font-bold'>
+            <nav className='pt-4 text-2xl  font-bold'>
                 <Link to="/" className="block py-2 hover:underline rounded">
-                    <FontAwesomeIcon icon={faHome} className="mr-2" /> Dashboard 
+                    <FontAwesomeIcon icon={faHome} className="mr-2" /> Home 
                 </Link>
                 <Link to="/view-businesses" className="block py-2 hover:underline rounded">
                     <FontAwesomeIcon icon={faBusinessTime} className="mr-2 " /> View 

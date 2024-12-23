@@ -3,7 +3,8 @@ import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import TopBar from './TopBar'; 
-
+import BusinessChart from './BusinessChart'
+import AnotherChart from './AnotherChart';
 const Dashboard = () => {
     const location = useLocation();
     const hideCardsPaths = ['/view-businesses', '/approved-registrations', '/rejected', '/generate-reports', '/manage-users'];
@@ -68,12 +69,18 @@ const Dashboard = () => {
                             </div>
                         </div>
                     )}
-                    
+            <BusinessChart/>
+
+<div>
+    
+</div>
                     <div className="mt-5">
                         <Outlet />
                     </div>
                 </div>
+                
             </div>
+
         </div>
     );
 };
