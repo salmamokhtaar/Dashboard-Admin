@@ -29,12 +29,13 @@
 import React from 'react';
 import Notification from './Notification';
 import Profile from './Profile';
+import { Link } from 'react-router-dom';
 
 const TopBar = () => {
     return (
         <div className="bg-white shadow-2xl flex items-center justify-between p-4 fixed-top">
             <div>
-                <h1 className="text-xl text-blue-600 font-semibold"> Admin</h1> </div>
+                <Link  to="/" className="text-xl text-blue-600 font-semibold"> Admin</Link> </div>
 
             <div className="flex flex-1 justify-center">
                 <input

@@ -1,4 +1,3 @@
-// src/ManageBusinesses.js
 import React, { useState } from 'react';
 import UpdateBusiness from './UpdateBusiness';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -32,7 +31,7 @@ function ManageBusinesses() {
     };
 
     return (
-        <div className="p-5 bg-gray-100">
+        <div className="p-3 bg-gray-100">
             <h1 className="text-2xl font-bold mb-4">All Businesses</h1>
             <div className="overflow-x-auto">
                 <table className="min-w-full bg-white border border-gray-300">
@@ -73,9 +72,12 @@ function ManageBusinesses() {
                     </tbody>
                 </table>
             </div>
+
+            {/* Update Business Modal */}
             {editingBusiness && (
                 <UpdateBusiness business={editingBusiness} onUpdate={handleUpdateBusiness} />
             )}
+
             <ToastContainer />
         </div>
     );
