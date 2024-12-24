@@ -7,7 +7,7 @@ import AnotherChart from './AnotherChart';
 
 const Dashboard = () => {
     const location = useLocation();
-    const hideCardsPaths = ['/view-businesses', '/approved-registrations', '/rejected', '/generate-reports', '/manage-users'];
+    const hideCardsPaths = ['/view-businesses', '/approved-registrations', '/rejected', '/generate-reports', '/manage-users','/profile'];
 
     return (
         <div className="flex flex-col h-screen">
